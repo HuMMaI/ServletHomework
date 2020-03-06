@@ -1,0 +1,13 @@
+DROP DATABASE IF EXISTS user_db;
+CREATE DATABASE user_db;
+
+USE user_db;
+
+CREATE TABLE users(
+	id INT PRIMARY KEY AUTO_INCREMENT,
+    first_name VARCHAR(20) NOT NULL,
+    last_name VARCHAR(20) NOT NULL,
+    age INT NOT NULL,
+    email VARCHAR(30) NOT NULL,
+    password VARCHAR(20) NOT NULL
+);
