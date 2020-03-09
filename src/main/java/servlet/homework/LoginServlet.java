@@ -6,7 +6,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.Optional;
 
+@WebServlet("/login")
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -20,14 +22,14 @@ public class LoginServlet extends HttpServlet {
 
         UserDao userDao = new UserDao();
 
-        User user = userDao.getByEmail(email);
+        Optional<User> user = userDao.getByEmail(email);
 
-        if (user == null){
+        if (!user.isPresent()){
             req.getRequestDispatcher("login.jsp").forward(req, resp);
             return;
         }
 
-        if (user.getPassword().equals(password)){
+        if (user.get().getPassword().equals(password)){
             req.setAttribute("userEmail", email);
             req.getRequestDispatcher("cabinet.jsp").forward(req, resp);
         }

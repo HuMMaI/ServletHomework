@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-         pageEncoding="ISO-8859-1"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core"%>
+         pageEncoding="ISO-8859-1" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
 
 <!DOCTYPE html>
 <html>
@@ -10,10 +10,8 @@
 </head>
 <body>
 
-<form action="index" method="post">
-    <input type="submit" name="signUp" value="Sign Up">
-    <input type="submit" name="signIn" value="Sign In">
-</form>
+<a href="register" methods="get"><input type="submit" name="signUp" value="Sign Up"></a>
+<a href="login" methods="get"><input type="submit" name="signIn" value="Sign In"></a>
 
 </body>
 </html>

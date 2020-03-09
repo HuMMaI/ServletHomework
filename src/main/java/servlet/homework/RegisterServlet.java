@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.sql.SQLException;
 
+@WebServlet("/register")
 public class RegisterServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -25,7 +26,12 @@ public class RegisterServlet extends HttpServlet {
         UserDao userDao = new UserDao();
 
         try {
-            userDao.insert(firstName, lastName, age, email, password);
+            int userId = userDao.insert(firstName, lastName, age, email, password);
+
+            if (userId == 0){
+                req.getRequestDispatcher("register.jsp").forward(req, resp);
+                return;
+            }
         } catch (SQLException e) {
             e.printStackTrace();
             throw new RuntimeException("Can`t add user!");
